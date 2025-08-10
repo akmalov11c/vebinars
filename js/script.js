@@ -1,47 +1,35 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // ======= TIMER SECTION =======
   const timers = document.querySelectorAll(".date__timer");
-  if (!timers.length) return;
-
   timers.forEach((el) => {
-    // read start time from element text or data-start attribute (fallback)
     const raw = (el.dataset.start || el.textContent || "").trim();
     const match = raw.match(/(\d+)\s*:\s*(\d+)/);
-    if (!match) return; // can't parse, skip
+    if (!match) return;
 
-    let minutes = parseInt(match[1], 10);
-    let seconds = parseInt(match[2], 10);
-    if (isNaN(minutes)) minutes = 0;
-    if (isNaN(seconds)) seconds = 0;
-
+    let minutes = +match[1] || 0;
+    let seconds = +match[2] || 0;
     let totalSeconds = minutes * 60 + seconds;
 
-    // update function
-    function update() {
+    const update = () => {
       const m = Math.floor(totalSeconds / 60);
       const s = totalSeconds % 60;
-      el.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(
-        2,
-        "0"
-      )}`;
+      el.textContent = `${m.toString().padStart(2, "0")}:${s
+        .toString()
+        .padStart(2, "0")}`;
 
       if (totalSeconds <= 0) {
         clearInterval(el._timerInterval);
-        // dispatch event so you can listen for it
         el.dispatchEvent(new CustomEvent("timer-ended", { bubbles: true }));
       } else {
         totalSeconds--;
       }
-    }
+    };
 
-    // run immediately then every second
     update();
     el._timerInterval = setInterval(update, 1000);
   });
-});
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Elements
-  const registerBtns = document.querySelectorAll(".hero__registerBtn"); // Hamma buttonlar tanlanadi
+  // ======= REGISTRATION MODAL SECTION =======
   const registrationModal = document.getElementById("registrationModal");
   const closeModalBtn = document.getElementById("closeModalBtn");
   const modalOverlay = document.querySelector(".homeModalOverlay");
@@ -54,9 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const selectedCountry = document.getElementById("selectedCountry");
   const selectedCountryCode = document.getElementById("selectedCountryCode");
   const countryDropdown = document.getElementById("countryDropdown");
-  const dropdownIcon = document.getElementById("dropdownIcon");
 
-  // Countries data
   const countries = [
     { name: "Uzbekistan", code: "+998" },
     { name: "Qirgiziston", code: "+996" },
@@ -72,352 +58,124 @@ document.addEventListener("DOMContentLoaded", function () {
     { name: "Janubiy Koreya", code: "+82" },
   ];
 
-  // Phone formats for different country codes
   const phoneFormats = {
     "+998": {
       placeholder: "88 888 88 88",
-      format: function (digits) {
-        let formatted = "";
-        if (digits.length > 0)
-          formatted += digits.slice(0, Math.min(2, digits.length));
-        if (digits.length > 2)
-          formatted += " " + digits.slice(2, Math.min(5, digits.length));
-        if (digits.length > 5)
-          formatted += " " + digits.slice(5, Math.min(7, digits.length));
-        if (digits.length > 7)
-          formatted += " " + digits.slice(7, Math.min(9, digits.length));
-        return formatted;
-      },
-      validate: function (value) {
-        return /^\d{2} \d{3} \d{2} \d{2}$/.test(value);
-      },
+      validate: /^\d{2} \d{3} \d{2} \d{2}$/,
     },
-    "+996": {
-      placeholder: "555 123 456",
-      format: function (digits) {
-        let formatted = "";
-        if (digits.length > 0)
-          formatted += digits.slice(0, Math.min(3, digits.length));
-        if (digits.length > 3)
-          formatted += " " + digits.slice(3, Math.min(6, digits.length));
-        if (digits.length > 6)
-          formatted += " " + digits.slice(6, Math.min(9, digits.length));
-        return formatted;
-      },
-      validate: function (value) {
-        return /^\d{3} \d{3} \d{3}$/.test(value);
-      },
-    },
-    "+992": {
-      placeholder: "55 555 5555",
-      format: function (digits) {
-        let formatted = "";
-        if (digits.length > 0)
-          formatted += digits.slice(0, Math.min(2, digits.length));
-        if (digits.length > 2)
-          formatted += " " + digits.slice(2, Math.min(5, digits.length));
-        if (digits.length > 5)
-          formatted += " " + digits.slice(5, Math.min(9, digits.length));
-        return formatted;
-      },
-      validate: function (value) {
-        return /^\d{2} \d{3} \d{4}$/.test(value);
-      },
-    },
-    "+993": {
-      placeholder: "6 123 4567",
-      format: function (digits) {
-        let formatted = "";
-        if (digits.length > 0)
-          formatted += digits.slice(0, Math.min(1, digits.length));
-        if (digits.length > 1)
-          formatted += " " + digits.slice(1, Math.min(4, digits.length));
-        if (digits.length > 4)
-          formatted += " " + digits.slice(4, Math.min(8, digits.length));
-        return formatted;
-      },
-      validate: function (value) {
-        return /^\d{1} \d{3} \d{4}$/.test(value);
-      },
-    },
-    "+7": {
-      placeholder: "700 123 4567",
-      format: function (digits) {
-        let formatted = "";
-        if (digits.length > 0)
-          formatted += digits.slice(0, Math.min(3, digits.length));
-        if (digits.length > 3)
-          formatted += " " + digits.slice(3, Math.min(6, digits.length));
-        if (digits.length > 6)
-          formatted += " " + digits.slice(6, Math.min(10, digits.length));
-        return formatted;
-      },
-      validate: function (value) {
-        return /^\d{3} \d{3} \d{4}$/.test(value);
-      },
-    },
-    "+49": {
-      placeholder: "170 123 4567",
-      format: function (digits) {
-        let formatted = "";
-        if (digits.length > 0)
-          formatted += digits.slice(0, Math.min(3, digits.length));
-        if (digits.length > 3)
-          formatted += " " + digits.slice(3, Math.min(6, digits.length));
-        if (digits.length > 6)
-          formatted += " " + digits.slice(6, Math.min(10, digits.length));
-        return formatted;
-      },
-      validate: function (value) {
-        return /^\d{3} \d{3} \d{4}$/.test(value);
-      },
-    },
-    "+90": {
-      placeholder: "532 123 4567",
-      format: function (digits) {
-        let formatted = "";
-        if (digits.length > 0)
-          formatted += digits.slice(0, Math.min(3, digits.length));
-        if (digits.length > 3)
-          formatted += " " + digits.slice(3, Math.min(6, digits.length));
-        if (digits.length > 6)
-          formatted += " " + digits.slice(6, Math.min(10, digits.length));
-        return formatted;
-      },
-      validate: function (value) {
-        return /^\d{3} \d{3} \d{4}$/.test(value);
-      },
-    },
-    "+375": {
-      placeholder: "29 123 4567",
-      format: function (digits) {
-        let formatted = "";
-        if (digits.length > 0)
-          formatted += digits.slice(0, Math.min(2, digits.length));
-        if (digits.length > 2)
-          formatted += " " + digits.slice(2, Math.min(5, digits.length));
-        if (digits.length > 5)
-          formatted += " " + digits.slice(5, Math.min(9, digits.length));
-        return formatted;
-      },
-      validate: function (value) {
-        return /^\d{2} \d{3} \d{4}$/.test(value);
-      },
-    },
-    "+380": {
-      placeholder: "50 123 4567",
-      format: function (digits) {
-        let formatted = "";
-        if (digits.length > 0)
-          formatted += digits.slice(0, Math.min(2, digits.length));
-        if (digits.length > 2)
-          formatted += " " + digits.slice(2, Math.min(5, digits.length));
-        if (digits.length > 5)
-          formatted += " " + digits.slice(5, Math.min(9, digits.length));
-        return formatted;
-      },
-      validate: function (value) {
-        return /^\d{2} \d{3} \d{4}$/.test(value);
-      },
-    },
-    "+1": {
-      placeholder: "555 123 4567",
-      format: function (digits) {
-        let formatted = "";
-        if (digits.length > 0)
-          formatted += digits.slice(0, Math.min(3, digits.length));
-        if (digits.length > 3)
-          formatted += " " + digits.slice(3, Math.min(6, digits.length));
-        if (digits.length > 6)
-          formatted += " " + digits.slice(6, Math.min(10, digits.length));
-        return formatted;
-      },
-      validate: function (value) {
-        return /^\d{3} \d{3} \d{4}$/.test(value);
-      },
-    },
-    "+82": {
-      placeholder: "10 1234 5678",
-      format: function (digits) {
-        let formatted = "";
-        if (digits.length > 0)
-          formatted += digits.slice(0, Math.min(2, digits.length));
-        if (digits.length > 2)
-          formatted += " " + digits.slice(2, Math.min(6, digits.length));
-        if (digits.length > 6)
-          formatted += " " + digits.slice(6, Math.min(10, digits.length));
-        return formatted;
-      },
-      validate: function (value) {
-        return /^\d{2} \d{4} \d{4}$/.test(value);
-      },
-    },
+    "+996": { placeholder: "555 123 456", validate: /^\d{3} \d{3} \d{3}$/ },
+    "+992": { placeholder: "55 555 5555", validate: /^\d{2} \d{3} \d{4}$/ },
+    "+993": { placeholder: "6 123 4567", validate: /^\d{1} \d{3} \d{4}$/ },
+    "+7": { placeholder: "700 123 4567", validate: /^\d{3} \d{3} \d{4}$/ },
+    "+49": { placeholder: "170 123 4567", validate: /^\d{3} \d{3} \d{4}$/ },
+    "+90": { placeholder: "532 123 4567", validate: /^\d{3} \d{3} \d{4}$/ },
+    "+375": { placeholder: "29 123 4567", validate: /^\d{2} \d{3} \d{4}$/ },
+    "+380": { placeholder: "50 123 4567", validate: /^\d{2} \d{3} \d{4}$/ },
+    "+1": { placeholder: "555 123 4567", validate: /^\d{3} \d{3} \d{4}$/ },
+    "+82": { placeholder: "10 1234 5678", validate: /^\d{2} \d{4} \d{4}$/ },
   };
 
-  // Current selected country code
   let currentCountryCode = "+998";
 
-  // Populate country dropdown
-  function populateCountryDropdown() {
-    countryDropdown.innerHTML = "";
-    countries.forEach((country) => {
-      const option = document.createElement("div");
-      option.className = "country-option";
-      if (country.code === currentCountryCode) {
-        option.classList.add("selected");
-      }
+  // Build dropdown once
+  countryDropdown.innerHTML = countries
+    .map(
+      (c) => `
+      <div class="country-option${
+        c.code === currentCountryCode ? " selected" : ""
+      }" data-code="${c.code}">
+        <span>${c.name}</span>
+        <span class="country-code">${c.code}</span>
+      </div>
+    `
+    )
+    .join("");
 
-      option.innerHTML = `
-        <span>${country.name}</span>
-        <span class="country-code">${country.code}</span>
-        ${
-          country.code === currentCountryCode
-            ? '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>'
-            : ""
-        }
-      `;
-
-      option.addEventListener("click", function () {
-        selectCountry(country);
-      });
-
-      countryDropdown.appendChild(option);
-    });
-  }
-
-  // Format phone number based on country code
-  function formatPhoneNumber(value, countryCode) {
-    // Remove all non-digit characters
-    const digits = value.replace(/\D/g, "");
-
-    // Get the format for the selected country or default to Uzbekistan
-    const format = phoneFormats[countryCode] || phoneFormats["+998"];
-
-    return format.format(digits);
-  }
-
-  // Validate phone number based on country code
-  function validatePhoneNumber(value, countryCode) {
-    const format = phoneFormats[countryCode] || phoneFormats["+998"];
-    return format.validate(value);
-  }
-
-  // Select a country
-  function selectCountry(country) {
-    currentCountryCode = country.code;
-    selectedCountryCode.textContent = country.code;
-    countryDropdown.style.display = "none";
-
-    // Update phone input placeholder
-    const format = phoneFormats[country.code] || phoneFormats["+998"];
-    phoneInput.placeholder = format.placeholder;
-
-    // Clear phone input when country changes
+  // Country selection
+  countryDropdown.addEventListener("click", (e) => {
+    const option = e.target.closest(".country-option");
+    if (!option) return;
+    currentCountryCode = option.dataset.code;
+    selectedCountryCode.textContent = currentCountryCode;
+    phoneInput.placeholder = phoneFormats[currentCountryCode].placeholder;
     phoneInput.value = "";
     phoneError.style.display = "none";
-
-    // Update dropdown icon
-    dropdownIcon.innerHTML = '<polyline points="6 9 12 15 18 9"></polyline>';
-  }
-
-  // Toggle country dropdown
-  selectedCountry.addEventListener("click", function () {
-    const isOpen = countryDropdown.style.display === "block";
-
-    if (isOpen) {
-      countryDropdown.style.display = "none";
-      dropdownIcon.innerHTML = '<polyline points="6 9 12 15 18 9"></polyline>';
-    } else {
-      populateCountryDropdown();
-      countryDropdown.style.display = "block";
-      dropdownIcon.innerHTML = '<polyline points="18 15 12 9 6 15"></polyline>';
-    }
+    countryDropdown.style.display = "none";
   });
 
-  // Close dropdown when clicking outside
-  document.addEventListener("click", function (event) {
-    if (
-      !selectedCountry.contains(event.target) &&
-      !countryDropdown.contains(event.target)
-    ) {
-      countryDropdown.style.display = "none";
-      dropdownIcon.innerHTML = '<polyline points="6 9 12 15 18 9"></polyline>';
-    }
+  selectedCountry.addEventListener("click", () => {
+    countryDropdown.style.display =
+      countryDropdown.style.display === "block" ? "none" : "block";
   });
 
   // Phone input formatting
-  phoneInput.addEventListener("input", function (e) {
-    const inputValue = e.target.value;
-    const formatted = formatPhoneNumber(inputValue, currentCountryCode);
-    phoneInput.value = formatted;
+  phoneInput.addEventListener("input", (e) => {
+    let digits = e.target.value.replace(/\D/g, "");
+    const format = phoneFormats[currentCountryCode];
+    // Simple grouping based on placeholder
+    const groups = format.placeholder.split(" ").map((g) => g.length);
+    let formatted = "";
+    let index = 0;
+    groups.forEach((len, i) => {
+      if (digits.length > index) {
+        if (i > 0) formatted += " ";
+        formatted += digits.slice(index, index + len);
+        index += len;
+      }
+    });
+    e.target.value = formatted;
     phoneError.style.display = "none";
   });
 
-  // Name input validation
-  nameInput.addEventListener("input", function () {
+  nameInput.addEventListener("input", () => {
     nameError.style.display = "none";
   });
 
-  // Open modal for all register buttons
-  registerBtns.forEach((btn) => {
-    btn.addEventListener("click", function () {
+  // Modal open (delegation)
+  document.body.addEventListener("click", (e) => {
+    if (e.target.matches(".hero__registerBtn")) {
       registrationModal.style.display = "block";
       document.body.style.overflowY = "hidden";
-    });
+    }
   });
 
-  // Close modal
-  function closeModal() {
+  const closeModal = () => {
     registrationModal.style.display = "none";
-    document.body.style.overflowY = "scroll";
-  }
-
+    document.body.style.overflowY = "";
+  };
   closeModalBtn.addEventListener("click", closeModal);
   modalOverlay.addEventListener("click", closeModal);
 
-  // Form submission
-  registrationForm.addEventListener("submit", function (e) {
+  // Form submit
+  registrationForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     if (!nameInput.value.trim()) {
       nameError.style.display = "block";
-      phoneError.style.display = "none";
       return;
     }
-
-    nameError.style.display = "none";
-
-    if (!validatePhoneNumber(phoneInput.value, currentCountryCode)) {
+    if (!phoneFormats[currentCountryCode].validate.test(phoneInput.value)) {
       phoneError.style.display = "block";
       return;
     }
 
-    phoneError.style.display = "none";
     submitBtn.textContent = "YUBORILMOQDA...";
     submitBtn.disabled = true;
 
-    const now = new Date();
-    const formattedDate = now.toLocaleDateString("uz-UZ");
-    const formattedTime = now.toLocaleTimeString("uz-UZ");
+    const now = new Intl.DateTimeFormat("uz-UZ", {
+      dateStyle: "short",
+      timeStyle: "medium",
+    }).format(new Date());
 
-    // Create form data object
-    const formData = {
-      Ism: nameInput.value,
-      TelefonRaqam: `${currentCountryCode} ${phoneInput.value}`,
-      SanaSoat: `${formattedDate} - ${formattedTime}`,
-    };
+    localStorage.setItem(
+      "formData",
+      JSON.stringify({
+        Ism: nameInput.value,
+        TelefonRaqam: `${currentCountryCode} ${phoneInput.value}`,
+        SanaSoat: now,
+      })
+    );
 
-    // Save to localStorage
-    localStorage.setItem("formData", JSON.stringify(formData));
-
-    // Redirect to thankYou.html
     window.location.href = "/thankYou.html";
-
-    // Reset form
-    submitBtn.textContent = "DAVOM ETISH";
-    submitBtn.disabled = false;
-    nameInput.value = "";
-    phoneInput.value = "";
-    closeModal();
   });
 });
