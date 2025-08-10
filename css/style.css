@@ -430,6 +430,7 @@ ul {
     text-align: start;
     z-index: 1;
     margin-bottom: 16px;
+    transform: translateY(-50px);
   }
   .date__inner-item {
     font-size: 11px;
@@ -451,12 +452,11 @@ ul {
     z-index: 20;
   }
   .date__bottom-btn {
-    margin-top: 23px;
     padding: 22px 0;
     width: 100%;
     margin-right: 0;
+    transform: translateY(-50px);
     margin-bottom: 11px;
-    margin-top: 0px;
     max-width: 331px;
     margin-left: auto;
     margin-right: auto;
@@ -465,6 +465,7 @@ ul {
   }
   .date__img {
     position: static;
+    transform: translateY(-50px);
     width: 284px;
     height: 400px;
     object-fit: contain;
@@ -505,6 +506,7 @@ ul {
     font-size: 16px;
     margin-bottom: 19px;
     color: #808080;
+    transform: translateY(-50px);
   }
 
   .mobileBg {
