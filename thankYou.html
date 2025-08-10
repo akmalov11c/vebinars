@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-16" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Obuna Bo'lish</title>
+    <!-- Inline Critical CSS -->
+    <style>
+      .header {
+        padding-top: 180px;
+        min-height: 100vh;
+        background: #efefef url(../images/big-img.png) no-repeat right
+          bottom/contain;
+      }
+      .hero-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-weight: 700;
+        font-size: 96px;
+        text-align: center;
+        margin-bottom: 25px;
+        text-transform: uppercase;
+      }
+      .hero-text {
+        font-family: Montserrat, sans-serif;
+        font-weight: 500;
+        font-size: 24px;
+        margin-bottom: 58px;
+      }
+      .hero-btn {
+        font-family: "Bebas Neue", sans-serif;
+        font-weight: 700;
+        font-size: 64px;
+        text-align: center;
+        padding: 39px 0 58px;
+        background: #62333e;
+        color: #fff;
+        border-radius: 30px;
+        text-decoration: none;
+      }
+      @media (max-width: 500px) {
+        .header {
+          padding-top: 40px;
+          background-image: none;
+        }
+        .hero-title {
+          font-size: 32px;
+          margin-bottom: 5px;
+        }
+        .hero-text {
+          font-size: 14px;
+          margin-bottom: 28px;
+          max-width: 307px;
+        }
+        .hero-btn {
+          font-size: 36px;
+          padding: 20px 0;
+          margin-bottom: 25px;
+        }
+      }
+    </style>
+    <!-- Async CSS Loading -->
+    <link
+      rel="stylesheet"
+      href="./css/subscribe.css"
+      media="print"
+      onload="this.media='all'"
+    />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue"
+      as="style"
+    />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700"
+      as="style"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section class="header">
+      <div class="header-container">
+        <div class="hero-left">
+          <h2 class="hero-title">oxirgi qadam qoldi!</h2>
+          <p class="hero-text">
+            Jonli efirda qatnashish va sovg’alarni olish uchun telegram kanalga
+            <span>obuna bo’ling</span>
+          </p>
+          <div class="hero-btn-box">
+            <img class="hero-img" src="./images/strelka.svg" alt="Arrow icon" />
+            <a href="https://t.me/+FpADZ0V5X-lhYTEy" class="hero-btn"
+              >obuna bo’lish</a
+            >
+          </div>
+          <div class="hero-box">
+            <img
+              class="hero-box-img"
+              src="./images/gift.webp"
+              width="31"
+              height="31"
+              alt="Gift icon"
+            />
+            <p class="hero-box-text">
+              Asl qiymati 1 000 000 so’m bo’lgan masterklassga mutlaqo
+              <b>BEPUL ro’yxatdan o’ting!</b>
+            </p>
+          </div>
+          <br />
+          <picture>
+            <source media="(max-width: 500px)" srcset="./images/main.png" />
+            <img
+              class="img"
+              src="./images/main.png"
+              width="632"
+              height="412"
+              alt="Center image"
+            />
+          </picture>
+        </div>
+      </div>
+    </section>
+
+    <script src="./js/thankYou.js"></script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "643150414956160");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=643150414956160&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+  </body>
+</html>

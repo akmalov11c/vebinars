@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>15-16-17-Avgust | 19:00</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #171717;
+        color: #fff;
+        font-family: Montserrat, sans-serif;
+      }
+      .container {
+        max-width: 1190px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .date {
+        padding: 136px 0 91px;
+        min-height: 100vh;
+      }
+      .date__container {
+        display: flex;
+        justify-content: space-between;
+      }
+      .date__top {
+        display: flex;
+        align-items: center;
+        margin-bottom: 14px;
+      }
+      .date__top-left {
+        display: flex;
+        align-items: center;
+        padding: 5px 21px;
+        border: 1px solid #fff;
+        border-radius: 50px;
+        margin-right: 12px;
+      }
+      .date__top-left-dot {
+        background: #33ad15;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        margin-right: 13px;
+      }
+      .date__top-left-title {
+        font-weight: 500;
+        font-size: 16px;
+      }
+      .date__top-text {
+        max-width: 303px;
+        font-weight: 500;
+        font-size: 14px;
+      }
+      .date__inner {
+        max-width: 742px;
+      }
+      .date__inner-title {
+        font-family: Anton, sans-serif;
+        font-weight: 400;
+        font-size: 40px;
+        text-transform: uppercase;
+        line-height: 51px;
+        margin-bottom: 18px;
+      }
+      .date__inner-info {
+        background: #0367fd;
+        border-radius: 10px;
+        margin-bottom: 36px;
+        padding: 6px 17px;
+      }
+      .date__inner-info-text {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+      .date__inner-title4 {
+        font-weight: 700;
+        font-size: 24px;
+        margin-bottom: 29px;
+      }
+      .date__inner-list {
+        margin-bottom: 16px;
+      }
+      .date__inner-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+      }
+      .date__bottom-btn {
+        font-weight: 700;
+        font-size: 18px;
+        padding: 18px 35px;
+        border: none;
+        border-radius: 100px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 13px;
+        cursor: pointer;
+      }
+      .date__bottom-btn span {
+        width: 25px;
+        height: 25px;
+        background: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .date__timer {
+        font-weight: 700;
+        font-size: 28px;
+        padding: 10px 20px;
+        background: #fff;
+        color: #000;
+        border-radius: 12px;
+        max-width: 140px;
+      }
+      @media (max-width: 1034px) {
+        .date {
+          padding: 52px 0 51px;
+          min-height: auto;
+        }
+        .date__top-left-title {
+          font-size: 13px;
+        }
+        .date__top-text {
+          font-size: 12px;
+        }
+        .date__inner-title {
+          font-size: 32px;
+          line-height: 40px;
+        }
+        .date__inner-info-text {
+          font-size: 18px;
+        }
+        .date__bottom-btn {
+          font-size: 18px;
+          padding: 22px 30px;
+        }
+      }
+      @media (max-width: 768px) {
+        .only_tablet {
+          display: block;
+        }
+        .tablet_hidden {
+          display: none;
+        }
+        .date__inner-title {
+          font-size: 25px;
+          line-height: 28px;
+        }
+        .date__container {
+          flex-direction: column;
+          padding: 0 10px;
+        }
+        .date__top {
+          flex-direction: column;
+        }
+        .date__top-text {
+          font-size: 12px;
+          margin-top: 15px;
+        }
+        .date__inner-info-text {
+          font-size: 10px;
+        }
+        .date__bottom-btn {
+          width: 100%;
+          max-width: 331px;
+          padding: 22px 0;
+          border-radius: 20px;
+        }
+      }
+    </style>
+    <link
+      rel="preload"
+      href="./css/style.css"
+      as="style"
+      onload="this.rel='stylesheet'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="./css/style.css" />
+    </noscript>
+    <link
+      rel="preload"
+      href="./css/modal.css"
+      as="style"
+      onload="this.rel='stylesheet'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="./css/modal.css" />
+    </noscript>
+  </head>
+
+  <body>
+    <div class="date">
+      <div class="container date__container">
+        <div class="date__inner">
+          <div class="date__top">
+            <div class="date__top-left">
+              <div class="date__top-left-dot"></div>
+              <h4 class="date__top-left-title">15-16-17-Avgust | 19:00</h4>
+            </div>
+            <p class="date__top-text">
+              Dostonjon Soyibov bilan <br />
+              3 kunlik Bepul dars
+            </p>
+          </div>
+          <h2 class="date__inner-title">
+            Biznesni boshlash va rivojlantirish bo’yicha biznes intensiv
+          </h2>
+          <div class="date__inner-info">
+            <p class="date__inner-info-text">
+              3 kunlik BEPUL kursimizda qatnashib daromadingizni 5 barobarga
+              oshirishni o'rganing
+            </p>
+          </div>
+          <ul class="date__inner-list tablet_hidden">
+            <h4 class="date__inner-title4">Onlayn Bepul darsda siz:</h4>
+            <li class="date__inner-item">
+              <div class="checkWrapper">
+                <img
+                  src="./images/listDecoration.svg"
+                  alt="check"
+                  loading="lazy"
+                  width="33"
+                  height="31"
+                />
+              </div>
+              Hozirda pul topishingiz mumkin bo’lgan top 10 ta soha;
+            </li>
+            <li class="date__inner-item">
+              <img
+                src="./images/listDecoration.svg"
+                alt="check"
+                loading="lazy"
+                width="33"
+                height="31"
+              />
+              0 dan biznes boshlab 45 kunda daromadga chiqish;
+            </li>
+            <li class="date__inner-item">
+              <img
+                src="./images/listDecoration.svg"
+                alt="check"
+                loading="lazy"
+                width="33"
+                height="31"
+              />
+              Doimiy mijoz oqimini qurish sirlari;
+            </li>
+          </ul>
+          <img
+            class="date__img only_tablet"
+            src="./images/main.png"
+            sizes="(max-width: 768px) 284px, 484px"
+            alt="Event speaker"
+            loading="lazy"
+          />
+          <div class="shadow"></div>
+          <div class="date__timer only_tablet">02:00</div>
+          <div class="flex">
+            <button class="date__bottom-btn hero__registerBtn">
+              BEPUL QATNASHISH
+              <span>
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 15 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <rect
+                    y="15"
+                    width="15"
+                    height="15"
+                    transform="rotate(-90 0 15)"
+                    fill="url(#pattern0_4030_562)"
+                  />
+                  <defs>
+                    <pattern
+                      id="pattern0_4030_562"
+                      patternContentUnits="objectBoundingBox"
+                      width="1"
+                      height="1"
+                    >
+                      <use
+                        xlink:href="#image0_4030_562"
+                        transform="scale(0.00390625)"
+                      />
+                    </pattern>
+                    <image
+                      id="image0_4030_562"
+                      width="256"
+                      height="256"
+                      preserveAspectRatio="none"
+                      xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAABSRJREFUeJzt3U1uHFUUhuHT7UjAKGEB7CQTFmELkECsrUGxRBaRIVkHmUf2LAPiZpKLLMt2/FNV5957nmcF3+S8qppURQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJX08xOvjX3GSvQOWtM8eMIKLw8npPvbvLj/tz4/v4kX2HljKLntA7y4OJ6cRxzcR/x/+25c/XP2y+zH+zdwFSxCAe9xy/I0IMAUBuMM9x9+IAMMTgFs84PgbEWBoAnDDI46/EQGGJQDXPOH4GxFgSALwxTOOvxEBhiMAscjxNyLAUMoHYMHjb0SAYZQOwArH34gAQygbgBWPvxEBulcyABscfyMCdK1cADY8/kYE6FapACQcfyMCdKlMABKPvxEBulMiAB0cfyMCdGX6AHR0/I0I0I2pA9Dh8TciQBemDUDHx9+IQERcHPbH7A0P9PbVb1dn2SOWNuU3AQc4/oiI08sP+ze+MUim6QIwyPE3IkCqqQIw2PE3IkCaaQIw6PE3IkCKKQIw+PE3IsDmhg/AJMffiACbGjoAkx1/IwJsZtgATHr8jQiwiSEDMPnxNyLA6oYLwMdDvI44nsfcx9+cXn7Y/+GvxKxluAB8/238fdzFefaODf3kr8SsZbgA7M7i86tvrn4/7uLP7C0b8jrAKoYLQIQIZA9hHkMGIEIEsocwh2EDECEC2UMY39ABiBCB7CGMbfgARIhA9hDGNUUAIkQgewhjmiYAESKQPYTxTBWACBHIHsJYpgtAhAhkD2EcUwYgQgSyhzCGaQMQIQLZQ+jf1AGIEIHsIfRt+gBEiED2EPpVIgARIpA9hD6VCUCECGQPoT+lAhAhAtlD6Eu5AESIQPYQ+lEyABEikD2EPpQNQIQIZA8hX+kARIhA9hBylQ9AhAhkDyGPAHwhAlQkANeIANUIwA0iQCUCcAsRoAoBuIMIUIEA3EMEmJ0AfIUIMDMBeAARYFYC8EAiwIwE4BFEgNkIwCOJADMRgCcQAWYhAE8kAsxAAJ5BBBidADyTCDAyAViACDAqAViICDAiAViQCDAaAViYCDASAViBCDAKAViJCDACAViRCNA7AViZCNAzAdiACNArAdiICNAjAdiQCNAbAdiYCNATAUggAvRCAJKIAD0QgEQiQDYBSCYCZBKADrQIxDHOs7ds6PTyn/0he0R1AtCJ3Vl8fvnd1a+lngR28XP2hOoEoCNFXwdIJACdEQG2JAAdEgG2IgCdEgG2IAAdEwHWJgCdEwHWJAADEAHWIgCDEAHWIAADEQGWJgCDEQGWJAADEgGWIgCDEgGWIAADEwGeSwAGJwI8hwBMQAR4KgGYhAjwFAIwERHgsQRgMiLAYwjAhESAhxKASYkADyEAExMBvkYAJicC3EcAChAB7iIARYgAtxGAQkSAmwSgGBHgOgEoSARoBKAoESBCAEoTAcr/n/3isD9mb8h0+Slilz2CNJ4AoDABgMIEAAoTAChMAKAwAYDCBAAKEwAoTACgMAGAwgQAChMAKEwAoDABgMIEAAoTAChMAKAwAYDCBAAKEwAoTACgMAGAwgQAChMAKEwAoDABgMIEAAoTAChMAKAwAYDCBAAKEwAoTACgMAGAwgQAChMAKEwAoDABgMIEAAoTAChMAKCwF9kDOvA2ewD9Ox7jffYGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACjhP+qVX5QOIgjCAAAAAElFTkSuQmCC"
+                    />
+                  </defs>
+                </svg>
+              </span>
+            </button>
+            <div class="date__timer tablet_hidden">02:00</div>
+          </div>
+          <p class="freeText only_tablet">Bepul qatnashish uchun bosing</p>
+          <ul class="date__inner-list only_tablet">
+            <h4 class="date__inner-title4">Onlayn bepul darsda siz:</h4>
+            <li class="date__inner-item">
+              <img
+                src="./images/listDecoration.svg"
+                alt="check"
+                loading="lazy"
+                width="23"
+                height="23"
+              />
+              Hozirda pul topishingiz mumkin bo’lgan top 10 ta soha;
+            </li>
+            <li class="date__inner-item">
+              <img
+                src="./images/listDecoration.svg"
+                alt="check"
+                loading="lazy"
+                width="23"
+                height="23"
+              />
+              0 dan biznes boshlab 45 kunda daromadga chiqish;
+            </li>
+            <li class="date__inner-item">
+              <img
+                src="./images/listDecoration.svg"
+                alt="check"
+                loading="lazy"
+                width="23"
+                height="23"
+              />
+              Doimiy mijoz oqimini qurish sirlari;
+            </li>
+          </ul>
+          <button class="date__bottom-btn hero__registerBtn only_tablet mt-0">
+            BEPUL QATNASHISH
+            <span>
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 15 15"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <rect
+                  y="15"
+                  width="15"
+                  height="15"
+                  transform="rotate(-90 0 15)"
+                  fill="url(#pattern0_4030_562)"
+                />
+                <defs>
+                  <pattern
+                    id="pattern0_4030_562"
+                    patternContentUnits="objectBoundingBox"
+                    width="1"
+                    height="1"
+                  >
+                    <use
+                      xlink:href="#image0_4030_562"
+                      transform="scale(0.00390625)"
+                    />
+                  </pattern>
+                  <image
+                    id="image0_4030_562"
+                    width="256"
+                    height="256"
+                    preserveAspectRatio="none"
+                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAABSRJREFUeJzt3U1uHFUUhuHT7UjAKGEB7CQTFmELkECsrUGxRBaRIVkHmUf2LAPiZpKLLMt2/FNV5957nmcF3+S8qppURQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJX08xOvjX3GSvQOWtM8eMIKLw8npPvbvLj/tz4/v4kX2HljKLntA7y4OJ6cRxzcR/x/+25c/XP2y+zH+zdwFSxCAe9xy/I0IMAUBuMM9x9+IAMMTgFs84PgbEWBoAnDDI46/EQGGJQDXPOH4GxFgSALwxTOOvxEBhiMAscjxNyLAUMoHYMHjb0SAYZQOwArH34gAQygbgBWPvxEBulcyABscfyMCdK1cADY8/kYE6FapACQcfyMCdKlMABKPvxEBulMiAB0cfyMCdGX6AHR0/I0I0I2pA9Dh8TciQBemDUDHx9+IQERcHPbH7A0P9PbVb1dn2SOWNuU3AQc4/oiI08sP+ze+MUim6QIwyPE3IkCqqQIw2PE3IkCaaQIw6PE3IkCKKQIw+PE3IsDmhg/AJMffiACbGjoAkx1/IwJsZtgATHr8jQiwiSEDMPnxNyLA6oYLwMdDvI44nsfcx9+cXn7Y/+GvxKxluAB8/238fdzFefaODf3kr8SsZbgA7M7i86tvrn4/7uLP7C0b8jrAKoYLQIQIZA9hHkMGIEIEsocwh2EDECEC2UMY39ABiBCB7CGMbfgARIhA9hDGNUUAIkQgewhjmiYAESKQPYTxTBWACBHIHsJYpgtAhAhkD2EcUwYgQgSyhzCGaQMQIQLZQ+jf1AGIEIHsIfRt+gBEiED2EPpVIgARIpA9hD6VCUCECGQPoT+lAhAhAtlD6Eu5AESIQPYQ+lEyABEikD2EPpQNQIQIZA8hX+kARIhA9hBylQ9AhAhkDyGPAHwhAlQkANeIANUIwA0iQCUCcAsRoAoBuIMIUIEA3EMEmJ0AfIUIMDMBeAARYFYC8EAiwIwE4BFEgNkIwCOJADMRgCcQAWYhAE8kAsxAAJ5BBBidADyTCDAyAViACDAqAViICDAiAViQCDAaAViYCDASAViBCDAKAViJCDACAViRCNA7AViZCNAzAdiACNArAdiICNAjAdiQCNAbAdiYCNATAUggAvRCAJKIAD0QgEQiQDYBSCYCZBKADrQIxDHOs7ds6PTyn/0he0R1AtCJ3Vl8fvnd1a+lngR28XP2hOoEoCNFXwdIJACdEQG2JAAdEgG2IgCdEgG2IAAdEwHWJgCdEwHWJAADEAHWIgCDEAHWIAADEQGWJgCDEQGWJAADEgGWIgCDEgGWIAADEwGeSwAGJwI8hwBMQAR4KgGYhAjwFAIwERHgsQRgMiLAYwjAhESAhxKASYkADyEAExMBvkYAJicC3EcAChAB7iIARYgAtxGAQkSAmwSgGBHgOgEoSARoBKAoESBCAEoTAcr/n/3isD9mb8h0+Slilz2CNJ4AoDABgMIEAAoTAChMAKAwAYDCBAAKEwAoTACgMAGAwgQAChMAKEwAoDABgMIEAAoTAChMAKAwAYDCBAAKEwAoTACgMAGAwgQAChMAKEwAoDABgMIEAAoTAChMAKAwAYDCBAAKEwAoTACgMAGAwgQAChMAKEwAoDABgMIEAAoTAChMAKCwF9kDOvA2ewD9Ox7jffYGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACjhP+qVX5QOIgjCAAAAAElFTkSuQmCC"
+                  />
+                </defs>
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="registrationModal" class="homeModal" style="display: none">
+      <div class="homeModalOverlay"></div>
+      <div class="homeFormContainer">
+        <button class="closeButton" id="closeModalBtn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 12 12"
+            fill="none"
+          >
+            <path
+              d="M1 11L11 1M1 1.00001L11 11"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+        <div class="homeFormTop">
+          <h1 class="homeFormTopTitle">MASTERKLASSGA RO'YXATDAN O'TISH</h1>
+        </div>
+        <form id="registrationForm" name="contact-form">
+          <div class="HomeFormRow">
+            <label class="HomeFormRowLabel" for="name"
+              >Ismingizni kiriting:</label
+            >
+            <input class="HomeFormRowInput" type="text" id="name" name="name" />
+            <p class="homeFormErrorText" id="nameError" style="display: none">
+              Iltimos, ismingizni kiriting
+            </p>
+          </div>
+          <div class="HomeFormRow">
+            <label class="HomeFormRowLabel" for="phone"
+              >Telefon raqamingiz:</label
+            >
+            <div class="phone-input-container">
+              <div class="country-selector">
+                <div class="selected-country" id="selectedCountry">
+                  <span id="selectedCountryCode">+998</span>
+                  <svg
+                    id="dropdownIcon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+                <div
+                  class="country-dropdown"
+                  id="countryDropdown"
+                  style="display: none"
+                ></div>
+              </div>
+              <input
+                class="HomeFormRowInput"
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="88 888 88 88"
+              />
+            </div>
+            <p class="homeFormErrorText" id="phoneError" style="display: none">
+              ❌ Telefon raqam mos emas!
+            </p>
+          </div>
+          <button type="submit" class="HomeFormBtn" id="submitBtn">
+            DAVOM ETISH
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script defer src="./js/script.js"></script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "643150414956160");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=643150414956160&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+  </body>
+</html>
